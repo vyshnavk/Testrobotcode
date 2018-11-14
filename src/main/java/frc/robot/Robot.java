@@ -13,12 +13,19 @@ import edu.wpi.cscore.VideoMode;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.CloseArmCommand;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.OpenArmsCommand;
+import frc.robot.commands.ReverseWheels;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.GrabberArmSubsystem;
+import frc.robot.subsystems.GrabberSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.commands.StartCommand;
+import frc.robot.commands.StartWheels;
 import frc.robot.commands.StopCommand;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -34,7 +41,9 @@ import frc.robot.subsystems.DriveSubsystem;
 public class Robot extends TimedRobot {
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static DriveSubsystem m_drive = new DriveSubsystem();
+  public static GrabberSubsystem m_Wheels = new GrabberSubsystem();
   public static OI m_oi;
+public static GrabberArmSubsystem m_Arm = new GrabberArmSubsystem();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -58,9 +67,20 @@ public class Robot extends TimedRobot {
     Joystick stick = new Joystick(0);
     Button b1 = new JoystickButton(stick, 1);
     Button b2 = new JoystickButton(stick, 2);
+    Button b3 = new JoystickButton(stick, 3);
+    Button b4 = new JoystickButton(stick, 4);
 
-    b1.whenPressed(new StartCommand());
-    b2.whenPressed(new StopCommand());
+
+
+  
+    b1.whenPressed(new StartWheels());
+    b1.whenReleased(new StopCommand());
+    b2.whenPressed(new ReverseWheels());
+    b2.whenReleased(new StopCommand());
+    b3.whenPressed(new OpenArmsCommand());
+    b4.whenPressed(new CloseArmCommand());
+
+
 
 
   }
@@ -152,4 +172,7 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
+
+public static void m_Arm() {
+}
 }
