@@ -23,6 +23,7 @@ import frc.robot.commands.ReverseWheels;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.GrabberArmSubsystem;
 import frc.robot.subsystems.GrabberSubsystem;
+import frc.robot.subsystems.LiftSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.commands.StartCommand;
 import frc.robot.commands.StartWheels;
@@ -44,6 +45,8 @@ public class Robot extends TimedRobot {
   public static GrabberSubsystem m_Wheels = new GrabberSubsystem();
   public static OI m_oi;
 public static GrabberArmSubsystem m_Arm = new GrabberArmSubsystem();
+public static LiftSubsystem m_lift = new LiftSubsystem();
+
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
